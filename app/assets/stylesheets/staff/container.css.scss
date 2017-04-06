@@ -1,0 +1,14 @@
+@import "../colors";
+@import "../dimensions";
+
+div#wrapper {
+  div#container {
+    width: 60%;
+    margin: 20px auto;
+    padding: 5px 10px 15px 10px;
+    float: left;
+    border-radius: $wide;
+    border: solid 4px $dark_cyan;
+    background-color: $very_light_gray;
+  }
+}

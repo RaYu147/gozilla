@@ -1,0 +1,11 @@
+<% @title = '問題解答' %>
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+  <% @question_contents.each do |q| %>
+  <ul><%= q.question_info.question_contents %></ul>
+    <% @choice_contents.each do |c| %>
+    <ul><%= c.collection_radio_buttons :choice_contents, question_choice_infos.all, :id, :choice_contents %></ul>
+    <% end %>
+  <% end %>
+</div>

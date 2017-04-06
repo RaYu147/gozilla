@@ -1,0 +1,19 @@
+<% @title = '社員用ログイン' %>
+
+<div id='login-form'>
+  <h1><%= @title %></h1>
+
+  <%= form_for @form, url: :staff_session do |f| %>
+    <div>
+      <%= f.label :login_id, 'ログインID'%>
+      <%= f.text_field :login_id %>
+    </div>
+    <div>
+      <%= f.label :password, 'パスワード' %>
+      <%= f.password_field :password %>
+    </div>
+    <div>
+      <%= f.submit 'ログイン' %>
+    </div>
+  <% end %>
+</div>

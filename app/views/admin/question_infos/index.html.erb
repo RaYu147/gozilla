@@ -1,0 +1,51 @@
+<% @title = '設問管理' %>
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+
+  <%= form_tag('question_infos/new', method: "post", :controller => "question_infos", :action => "new" ) do %>
+    <%= label :question_count, '選択肢数', class: 'required' %>
+    <%= number_field_tag :question_count, '4', :required => true, in: 2..10 %>問 (半角数字2~10まで有効)
+    <%= submit_tag '設問新規作成' %>
+  <% end %>
+
+  <div class="search-form">
+    <%= form_for @search_form, as: 'search', url: :admin_question_infos,
+      html: { method: :get, class: 'search' } do |f| %>
+      <%= f.label :contents, '設問内容' %>
+      <%= f.text_field :contents, size: 20 %>
+      <%= f.submit '検索' %>
+    <% end %>
+  </div>
+
+  <p>既にテスト情報に登録されている設問は編集･削除できません。</p>
+
+  <table class="listing">
+    <% if @question_infos.present? %>
+      <tr>
+        <th>設問情報ID</th>
+        <th>設問内容</th>
+        <th></th>
+      </tr>
+      <% @question_infos.each do |question| %>
+        <tr>
+          <td><%= question.id %></td>
+          <td><%= question.question_contents[0, 25] %></td>
+          <td class="actions">
+            <%= link_to "照会", [ :admin, question ] %> |
+            <% if question.test_infos.exists? %>
+               編集 | 削除
+            <% else %>
+              <%= link_to "編集", [ :edit, :admin, question ] %> |
+              <%= link_to "削除", [ :admin, question ], method: :delete %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <%= paginate @question_infos %>
+  <% else %>
+    <th>
+      <p>検索ワードに一致する設問情報はありませんでした。</p>
+    </th>
+  <% end %>
+</table>

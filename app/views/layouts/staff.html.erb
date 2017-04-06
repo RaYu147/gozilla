@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= document_title %></title>
+  <%= stylesheet_link_tag 'staff', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div id="wrapper">
+    <%= render 'staff/shared/header' %>
+    <%=
+    if current_account && current_account.authority_category == 1
+      render 'staff/shared/admin_menu'
+    elsif current_account && current_account.authority_category == 2
+      render 'staff/shared/staff_menu'
+    end
+    %>
+    <div id="container">
+      <%= yield %>
+    </dir>
+  </div>
+</body>
+</html>

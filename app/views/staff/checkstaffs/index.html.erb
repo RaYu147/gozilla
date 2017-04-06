@@ -1,0 +1,82 @@
+<% @title = '社員受講確認' %>
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+
+  <%= render 'search_form' %>
+  <table class="listing">
+    <tr>
+      <th>年度名称</th>
+      <th>ログインID</th>
+      <th>氏名</th>
+      <th>回数</th>
+      <th>受講状況</th>
+      <th></th>
+    </tr>
+  <% test_basic_info_all = TestBasicInfo.joins(:year_management) %>
+
+  <% test_basic_info_all.each do |t| %>
+    <% @checksttafstest.each do |a| %>
+      <% if @test_basic_info_id.present? %>
+        <% if @test_basic_info_id == t.id %>
+          <% exam_info = ExamInfo.where(account_id: a.id).where(test_basic_info_id: @test_basic_info_id) %>
+          <% if exam_info.present? %>
+            <% exam_info.each do |e| %>
+            <tr>
+              <td><%= t.year_management.year_name %></td>
+              <td><%= a.login_id %></td>
+              <td><%= a.account_name %></td>
+              <td><%= e.exam_count %></td>
+              <% if e.exam_complete_date %>
+                <td><%= '済' %></td>
+                <td><%= link_to '採点結果', staff_resultmark_path(exam_info_id: e.id) %></td>
+              <% else %>
+                <td><%= '未' %></td>
+                <td></td>
+              <% end %>
+            </tr>
+            <% end %>
+          <% else %>
+          <tr>
+            <td><%= t.year_management.year_name %></td>
+            <td><%= a.login_id %></td>
+            <td><%= a.account_name %></td>
+            <td><%= '1' %></td>
+            <td><%= '未' %></td>
+            <td></td>
+          </tr>
+          <% end %>
+        <% end %>
+      <% else %>
+        <% exam_info = ExamInfo.where(account_id: a.id).where(test_basic_info_id: t.id) %>
+        <% if exam_info.present? %>
+          <% exam_info.each do |e| %>
+          <tr>
+            <td><%= t.year_management.year_name %></td>
+            <td><%= a.login_id %></td>
+            <td><%= a.account_name %></td>
+            <td><%= e.exam_count %></td>
+            <% if e.exam_complete_date %>
+              <td><%= '済' %></td>
+              <td><%= link_to '採点結果', staff_resultmark_path(exam_info_id: e.id) %></td>
+            <% else %>
+              <td><%= '未' %></td>
+              <td></td>
+            <% end %>
+          </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td><%= t.year_management.year_name %></td>
+            <td><%= a.login_id %></td>
+            <td><%= a.account_name %></td>
+            <td><%= '1' %></td>
+            <td><%= '未' %></td>
+            <td></td>
+          </tr>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+  </table>
+</div>

@@ -1,0 +1,40 @@
+<% @title = '年度管理' %>
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+  <div class="links">
+    <%= link_to '新規登録', [ :new, :admin_year_management ] %>
+  </div>
+
+<%= render 'search_form' %>
+
+<%= paginate @year_managements %>
+
+  <table class="listing">
+    <% if @year_managements.present? %>
+      <tr>
+        <th>年度</th>
+        <th>年度名称</th>
+        <th></th>
+      </tr>
+      <% @year_managements.each do |m| %>
+        <tr>
+          <td><%= m.year %></td>
+          <td><%= m.year_name %></td>
+          <td class="actions">
+            <%= link_to '照会', [ :admin, m ]%> |
+            <%= link_to '編集', [ :edit, :admin, m ]%> |
+            <%= link_to '削除', [ :admin, m ], method: :delete %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <th>
+        <p>検索ワードに一致する年度情報はありませんでした。</p>
+      </th>
+    <% end %>
+  </table>
+
+<%= paginate @year_managements %>
+
+</div>

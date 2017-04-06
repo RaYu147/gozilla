@@ -1,0 +1,13 @@
+<%= form_for @search_form, as: 'search', :url => {:checkmytest => 'index'},
+    html: {method: :get, class: 'search'} do |f| %>
+    <%= markup do |m|
+      p = TestSearchFormPresenter.new(f, self)
+      m << p.label(:year_name, '年度名称検索')
+      m.br
+      m << p.text_field(:year_name)
+      m << '&nbsp;'
+      m << f.submit('検索')
+      m << '&nbsp;&nbsp;'
+      #m << p.pull_down(:exam_complete_date, '受講状況', [['未', 'nil'],['済','exist']])
+    end %>
+    <% end %>

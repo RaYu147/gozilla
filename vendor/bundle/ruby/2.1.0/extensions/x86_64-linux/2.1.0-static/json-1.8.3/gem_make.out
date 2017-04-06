@@ -1,0 +1,14 @@
+current directory: /home/vagrant/godzilla/vendor/bundle/ruby/2.1.0/gems/json-1.8.3/ext/json
+/opt/rubies/ruby-2.1.0/bin/ruby -r ./siteconf20160908-22917-1fwq1a7.rb extconf.rb
+creating Makefile
+
+current directory: /home/vagrant/godzilla/vendor/bundle/ruby/2.1.0/gems/json-1.8.3/ext/json
+make "DESTDIR=" clean
+
+current directory: /home/vagrant/godzilla/vendor/bundle/ruby/2.1.0/gems/json-1.8.3/ext/json
+make "DESTDIR="
+make: Nothing to be done for `all'.
+
+current directory: /home/vagrant/godzilla/vendor/bundle/ruby/2.1.0/gems/json-1.8.3/ext/json
+make "DESTDIR=" install
+installing default libraries

@@ -1,0 +1,60 @@
+<% @title = 'テスト基本情報管理' %>
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+
+  <%= render 'search_form' %>
+
+  <%= paginate @test_basic_infos %>
+
+  <table class="listing">
+    <% if @test_basic_infos.present? %>
+      <tr>
+        <th>年度名称</th>
+        <th>設問数</th>
+        <th>合格正解数</th>
+        <th>テスト基本情報</th>
+        <th>設問選択</th>
+        <th>メッセージ</th>
+      </tr>
+
+      <% @test_basic_infos.each do |m| %>
+        <tr>
+          <td><%= m.year_name %></td>
+          <% if m.test_basic_info %>
+           <td><%= m.test_basic_info.question_count %></td>
+           <td><%= m.test_basic_info.pass_grade %></td>
+           <td class="actions">
+             <%=
+               link_to '編集', edit_admin_test_basic_info_path(m.test_basic_info.id, param_year_id: m)
+             %>
+             <%=
+               #link_to '削除', controller: "test_basic_infos", action: "destroy", param_id: m.test_basic_infos.id
+               link_to '削除', [ :admin, m.test_basic_info ], method: :delete
+             %>
+           </td>
+           <td><%= link_to '設問管理', controller: "test_infos", action: "index", test_basic_info_id: m.test_basic_info.id %></td>
+           <% if TestInfo.where(test_basic_info: m.test_basic_info.id).count == m.test_basic_info.question_count %>
+             <td></td>
+           <% else %>
+             <td>設問が不足しています。</td>
+           <% end %>
+          <% else %>
+           <td>-</td>
+           <td>-</td>
+           <td class="actions"><%= link_to '追加',  new_admin_test_basic_info_path(year_id: m) %></td>
+           <td>-</td>
+           <td>基本情報が未設定です。</td>
+          <% end %>
+        </tr>
+      <% end %>
+    <% else %>
+      <th>
+        <p>検索ワードに一致する年度情報はありませんでした。</p>
+      </th>
+    <% end %>
+  </table>
+
+  <%= paginate @test_basic_infos %>
+
+</div>

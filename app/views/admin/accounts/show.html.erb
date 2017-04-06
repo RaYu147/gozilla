@@ -1,0 +1,11 @@
+<% @title = '社員管理 - 照会' %>
+<h1><%= @title %></h1>
+
+<div id="generic-form">
+  <%= form_for [ :admin, @accounts ] do |f| %>
+    <%= render 'form_show', f: f %>
+    <div class="buttons">
+      <%= link_to '戻る', :admin_accounts %>
+    </div>
+  <% end %>
+</div>

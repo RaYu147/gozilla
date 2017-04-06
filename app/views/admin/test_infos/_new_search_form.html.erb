@@ -1,0 +1,14 @@
+<%= form_for @search_form, as: 'search', url: new_admin_test_info_path,
+    html: { method: :get, class: 'search' } do |f| %>
+
+  <%= markup do |m|
+    p = FormPresenter.new(f, self)
+    m << p.text_field(:test_basic_info_id, type: 'hidden', value: @test_basic_info.id.to_s)
+    m << p.text_field(:question_number, type: 'hidden', value: @question_number)
+    m << p.label(:question_contents, '設問内容検索')
+    m << p.text_field(:question_contents)
+    m << '&nbsp;'
+    m << f.submit('検索')
+  end %>
+
+<% end %>

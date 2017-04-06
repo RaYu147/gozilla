@@ -1,0 +1,11 @@
+<% @title = '年度管理 - 照会' %>
+<h1><%= @title %></h1>
+
+<div id="generic-form">
+  <%= form_for [ :admin, @year_managements ] do |f| %>
+    <%= render 'form_show', f: f %>
+    <div class="buttons">
+      <%= link_to '戻る', :admin_year_managements %>
+    </div>
+  <% end %>
+</div>

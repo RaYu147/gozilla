@@ -1,0 +1,46 @@
+<div class="notes">
+</div>
+
+<div>
+  <%= f.label :test_basic_info_id, "年度名称" %>
+  <%= f.label :test_basic_info_id, @test_basic_info.year_management.year_name %>
+  <%= f.text_field :test_basic_info_id, value: @test_basic_info.id, type: 'hidden' %>
+</div>
+
+<div>
+  <%= f.label :question_number, '問題番号'%>
+  <%= f.label :question_number, @question_number %>
+  <%= f.text_field :question_number, value: @question_number, type: 'hidden' %>
+</div>
+
+<div>
+  <%= f.label :question_info_id, '設問'%>
+
+<table>
+  <% if @test_basic_infos.present? %>
+    <tr>
+      <td></td>
+      <td>設問ID</td>
+      <td>設問内容</td>
+    </tr>
+    <% @question_infos.each do |m| %>
+      <tr>
+        <td><%= f.radio_button :question_info_id, m.id, {required: true} %></td>
+        <td><%= m.id %></td>
+        <td><%= m.question_contents %></td>
+      </tr>
+    <% end %>
+    <% else %>
+      <th>
+        <p>検索ワードに一致する設問情報はありませんでした。</p>
+      </th>
+    <% end %>
+</table>
+
+</div>
+
+<div>
+  <%= f.text_field :slug, value: "aaa", type: 'hidden' %>
+  <%= f.text_field :created_account_id, value: 1, type: 'hidden' %>
+  <%= f.text_field :updated_account_id, value: 1, type: 'hidden' %>
+</div>

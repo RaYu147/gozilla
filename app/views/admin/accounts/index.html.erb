@@ -1,0 +1,39 @@
+<% @title = '社員管理' %>
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+  <div class="links">
+    <%= link_to '新規登録', [ :new, :admin_account ] %>
+  </div>
+
+<%= render 'search_form' %>
+
+<%= paginate @accounts %>
+
+  <table class="listing">
+    <% if @accounts.present? %>
+      <tr>
+        <th>ログインID</th>
+        <th>氏名</th>
+        <th></th>
+      </tr>
+      <% @accounts.each do |m| %>
+        <tr>
+          <td><%= m.login_id %></td>
+          <td><%= m.account_name %></td>
+          <td class="actions">
+            <%= link_to '照会', [ :admin, m ] %> |
+            <%= link_to '編集', [ :edit, :admin, m ] %> |
+            <%= link_to '削除', [ :admin, m ], method: :delete %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <%= paginate @accounts %>
+  <% else %>
+    <th>
+      <p>検索ワードに一致するアカウント情報はありませんでした。</p>
+    </th>
+  <% end %>
+
+</div>

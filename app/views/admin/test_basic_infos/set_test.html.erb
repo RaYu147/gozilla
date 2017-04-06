@@ -1,0 +1,12 @@
+<% @title = '設問登録' %>
+<h1><%= @title %></h1>
+
+<div id="generic-form">
+  <%= form_for [ :admin, @set_test_info ] do |f| %>
+  <%= render 'set_test_form', f: f %>
+  <div class="buttons">
+    <%= f.submit '登録' %>
+    <%= link_to 'キャンセル', :admin_test_basic_infos %>
+  <div>
+  <% end %>
+</div>

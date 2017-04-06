@@ -1,0 +1,50 @@
+<% @title = '社員受講確認' %>
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+
+  <%= render 'search_form' %>
+
+  <table class="listing">
+    <tr>
+      <th>社員番号</th>
+      <th>氏名</th>
+      <th>回数</th>
+      <th>受講状況</th>
+      <th></th>
+    </tr>
+
+    <% @accounts.each_with_index do |a, index| %>
+      <tr>
+        <td><%= a.login_id %></td>
+        <td><%= a.account_name %></td>
+        <td class="exam_count">
+          <%=
+          if a.exam_infos[index]
+            a.exam_infos[index].exam_count
+          else
+            '1'
+          end
+          %>
+        </td>
+        <td class="situation">
+          <%=
+          if a.exam_infos[index]
+            '済'
+          else
+            '未'
+          end
+          %>
+        </td>
+        <td class="actions">
+          <%=
+          if a.exam_infos[index]
+            link_to '採点結果', :staff_resultmark(staff_resultmark, a.id[index])
+          else
+          end
+          %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

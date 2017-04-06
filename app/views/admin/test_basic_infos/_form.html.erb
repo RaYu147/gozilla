@@ -1,0 +1,14 @@
+<%=
+markup do |m|
+  p = TestBasicInfoFormPresenter.new(f, self)
+  m << p.label(:year_management_id, @year.year_name)
+  m << p.text_field(:year_management_id, type: 'hidden', value: @year.id)
+
+  m << p.text_field_block(:question_count, '設問数', required: true, type: 'number')
+  m << p.text_field_block(:pass_grade, '合格正解数', required: true, type: 'number')
+
+  m << p.text_field(:slug, type: 'hidden', value: 'aaa')
+  m << p.text_field(:created_account_id, type: 'hidden', value: 1)
+  m << p.text_field(:updated_account_id, type: 'hidden', value: 1)
+end
+%>

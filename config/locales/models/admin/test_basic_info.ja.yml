@@ -1,0 +1,6 @@
+ja:
+  activerecord:
+    attributes:
+      test_basic_info:
+        question_count: 設問数
+        pass_grade: 合格正解数

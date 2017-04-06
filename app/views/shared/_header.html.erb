@@ -1,0 +1,13 @@
+<header>
+  <span class="logo-mark">GODZILLA</span>
+  <%=
+    if current_account
+      link_to 'ログアウト', :staff_session, method: :delete
+      link_to 'パスワード変更'
+    else
+      link_to 'ログイン', :staff_login
+    end
+  %>
+  <!-- <%= link_to 'パスワード変更' %>
+  <%= link_to 'ログアウト' %> -->
+</header>

@@ -1,0 +1,43 @@
+<% @title = '設問登録' %>
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+  <table class="listing">
+    <tr>
+      <th>問題番号</th>
+      <th>設問ID</th>
+      <th width="60%">設問内容</th>
+      <th></th>
+    </tr>
+
+    <% (1..@count.question_count).each do |m| %>
+      <tr>
+        <td><%= m %></td>
+        <% record_flag = false %>
+        <% (1..@count.question_count).each do |f| %>
+          <% if @test_infos[f - 1] %>
+            <% if m == @test_infos[f - 1].question_number %>
+              <td><%= @test_infos[f - 1].question_info.id %></td>
+              <td><%= @test_infos[f - 1].question_info.question_contents %></td>
+              <td>
+              <%=
+                link_to '編集', edit_admin_test_info_path(@test_infos[f - 1].id ,question_number: m)
+              %> |
+              <%=
+                link_to '削除', [ :admin, @test_infos[f - 1] ], method: :delete
+              %>
+            </td>
+              <% record_flag = true %>
+            <% end %>
+          <% end %>
+        <% end %>
+
+        <% if !record_flag %>
+          <td>-</td>
+          <td>未設定</td>
+          <td><%= link_to '追加', new_admin_test_info_path(question_number: m, test_basic_info_id: @count.id) %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+</div>

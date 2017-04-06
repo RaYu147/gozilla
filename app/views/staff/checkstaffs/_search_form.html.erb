@@ -1,0 +1,16 @@
+<div id="generic-form">
+  <%= form_for @search_form, as: 'search', :url => {:checkstaffs => 'index'},
+      html: {method: :get, class: 'search'} do |f| %>
+    <div>
+      年度名称(完全一致)
+      <%= f.text_field :year_name %>
+    </div>
+    <div>
+      氏名(完全一致)
+      <%= f.text_field :account_name %>
+    </div>
+    <div>
+      <%= f.submit '検索' %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,13 @@
+<% @title = '設問管理 - 編集' %>
+<h1><%= @title %></h1>
+<div class="table-wrapper">
+  <div id="generic-form">
+    <%= form_for [ :admin, @question_info ] do |f| %>
+      <%= render 'edit_form', f: f %>
+      <div class="buttons">
+        <%= f.submit '更新' %>
+        <%= link_to 'キャンセル', :admin_question_infos %>
+      </div>
+    <% end %>
+  </div>
+</div>

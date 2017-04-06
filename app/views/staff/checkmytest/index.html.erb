@@ -1,0 +1,40 @@
+<% @title = '受講一覧' %>
+<h1><%= @title %></h1>
+
+  <div class="table-wrapper">
+    <%= render 'search_form' %>
+    <table class="listing">
+      <tr>
+        <th>年度名称</th>
+        <th>回数</th>
+        <th>受講状況</th>
+        <th></th>
+      </tr>
+      <% @checkmytest.each do |m| %>
+       <% exam_info = ExamInfo.where(test_basic_info_id: m.id).where(account_id: current_account) %>
+       <% if exam_info.present? %>
+         <% exam_info.each do |e| %>
+         <tr>
+           <td><%= m.year_management.year_name %></td>
+           <td><%= e.exam_count %></td>
+           <% if e.exam_complete_date %>
+             <td><%= '済' %></td>
+             <td><%= link_to '採点結果', staff_resultmark_path(exam_info_id: e.id) %></td>
+           <% else %>
+             <td><%= '未' %></td>
+             <td><%= link_to '回答画面', staff_mijuken_path(exam_info_id: e.id) %></td>
+           <% end %>
+         </tr>
+         <% end %>
+       <% else %>
+       <tr>
+         <td><%= m.year_management.year_name %></td>
+         <td>1</td>
+         <td><%= '未' %></td>
+         <td><%= link_to '回答画面', staff_notrecord_path(test_basic_info_id: m.id) %></td>
+       </tr>
+       <% end %>
+      <% end %>
+    </table>
+    <%#= paginate @checkmytest %>
+  </div>

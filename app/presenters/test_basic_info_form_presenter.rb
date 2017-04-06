@@ -1,0 +1,2 @@
+class TestBasicInfoFormPresenter < FormPresenter
+end

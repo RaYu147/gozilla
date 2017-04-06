@@ -1,0 +1,23 @@
+<div>
+  <%= f.text_field :authority_category, value: 2, type: 'hidden' %>
+  <%= f.text_field :slug, value: "1", type: 'hidden' %>
+  <%= f.text_field :status, value: 1, type: 'hidden' %>
+  <%= f.text_field :created_account_id, value: 1, type: 'hidden' %>
+  <%= f.text_field :updated_account_id, value: 1, type: 'hidden' %>
+</div>
+<%= markup do |m|
+  p = FormPresenter.new(f, self)
+  m << p.notes
+  p.with_options(required: true, size: 32) do |q|
+    m << q.text_field_block(:login_id, 'ログインID')
+    m << "(100文字以内有効)"
+    m << q.text_field_block(:account_name, '氏名')
+    m << "(100文字以内有効)"
+    m << q.text_field_block(:mail_address, 'メールアドレス')
+    m << "(256文字以内有効)"
+    m << q.password_field_block(:password, 'パスワード') if f.object.new_record?
+    m << "(256文字以内有効)" if f.object.new_record?
+    m << q.text_field_block(:remarks, '備考')
+    m << "(256文字以内有効)"
+  end
+end %>

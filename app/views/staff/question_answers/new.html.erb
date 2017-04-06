@@ -1,0 +1,30 @@
+<% @title = '問題解答' %>
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+  <h2><%= @year_name %></h2>
+
+  <div>
+    <%= form_tag(:staff_question_answers, method: 'POST', :controller => 'question_answers', :action => 'create') do %>
+    <%= text_field 'exam_info_id', '', type: 'hidden', value: @exam_info_id %>
+      <% @test_info.each_with_index do |t, index| %>
+      <%= text_field 'test_info_id', '', type: 'hidden', value: t.id %>
+        <div>
+          <%= t.question_number %>
+          <%= t.question_info.question_contents %>
+          <div>
+            <% q = QuestionChoiceInfo.where(question_info_id: t.question_info.id) %>
+            <% t.question_info.question_count.times do |n| %>
+              <div>
+                <%= radio_button 'choice', index, q[n].id, { checked: false, required: true } %>
+                <%= q[n].choice_contents %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      <%= submit_tag '回答' %>
+    <% end %>
+  </div>
+
+</div>

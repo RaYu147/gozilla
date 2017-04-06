@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    attributes:
+      question_choice_info:
+        choice_contents: 選択肢内容
+    errors:
+      models:
+        question_choice_info:
+          attributes:
+            choice_contents:

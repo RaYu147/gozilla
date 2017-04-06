@@ -1,0 +1,48 @@
+current directory: /home/vagrant/godzilla/vendor/bundle/ruby/2.1.0/gems/therubyracer-0.12.2/ext/v8
+/opt/rubies/ruby-2.1.0/bin/ruby -r ./siteconf20160908-22917-thm5p6.rb extconf.rb
+checking for main() in -lpthread... yes
+creating Makefile
+
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /home/vagrant/godzilla/vendor/bundle/ruby/2.1.0/extensions/x86_64-linux/2.1.0-static/therubyracer-0.12.2/mkmf.log
+
+current directory: /home/vagrant/godzilla/vendor/bundle/ruby/2.1.0/gems/therubyracer-0.12.2/ext/v8
+make "DESTDIR=" clean
+
+current directory: /home/vagrant/godzilla/vendor/bundle/ruby/2.1.0/gems/therubyracer-0.12.2/ext/v8
+make "DESTDIR="
+compiling accessor.cc
+compiling signature.cc
+compiling external.cc
+compiling date.cc
+compiling array.cc
+compiling value.cc
+compiling trycatch.cc
+compiling context.cc
+compiling init.cc
+compiling primitive.cc
+compiling backref.cc
+compiling gc.cc
+compiling exception.cc
+compiling message.cc
+compiling template.cc
+compiling invocation.cc
+compiling v8.cc
+compiling handles.cc
+compiling string.cc
+compiling rr.cc
+compiling script.cc
+compiling constraints.cc
+compiling constants.cc
+compiling heap.cc
+compiling function.cc
+compiling locker.cc
+compiling object.cc
+compiling stack.cc
+linking shared-object v8/init.so
+
+current directory: /home/vagrant/godzilla/vendor/bundle/ruby/2.1.0/gems/therubyracer-0.12.2/ext/v8
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 init.so ./.gem.20160908-22917-yfuoep/v8
+installing default init libraries

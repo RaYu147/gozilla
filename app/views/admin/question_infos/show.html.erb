@@ -1,0 +1,26 @@
+<% @title = '設問管理 - 照会' %>
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+  <p>設問番号</p>
+  <p><%= @infos.id %></p>
+  <p>設問内容</p>
+  <p><%= @infos.question_contents %></p>
+  <table class="question_choice_list">
+    <tr>
+      <td>正答選択肢</td>
+      <td>選択肢番号</td>
+      <td>選択肢内容</td>
+    <tr>
+    <% @question_info_and_choice.each do |q| %>
+        <tr>
+          <td>
+            <%= '●' if q.correct_status == 1 %>
+          </td>
+          <td><%= q.choice_number %></td>
+          <td><%= q.choice_contents %></td>
+        </tr>
+    <% end %>
+  </table>
+</div>
+<%= link_to '戻る', :admin_question_infos %>

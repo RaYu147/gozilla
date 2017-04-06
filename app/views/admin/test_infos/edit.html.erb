@@ -1,0 +1,14 @@
+<% @title = 'テスト情報更新' %>
+<h1><%= @title %></h1>
+
+<div id="generic-form">
+
+  <%= render 'edit_search_form' %>
+  <%= form_for [ :admin, @test_info ] do |f| %>
+    <%= render 'form', f: f %>
+    <div class="buttons">
+      <%= f.submit '更新' %>
+      <%= link_to 'キャンセル', controller: "test_infos", action: "index", test_basic_info_id: @test_basic_info.id %>
+    </div>
+  <% end %>
+</div>

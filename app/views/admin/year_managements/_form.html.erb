@@ -1,0 +1,31 @@
+<div class="notes">
+  <span class="mark">*</span> 印のついた項目は入力必須です。
+</div>
+<div>
+  <%= f.text_field :slug, value: "1", type: 'hidden' %>
+  <%= f.text_field :status, value: 1, type: 'hidden' %>
+  <%= f.text_field :created_account_id, value: 1, type: 'hidden' %>
+  <%= f.text_field :updated_account_id, value: 1, type: 'hidden' %>
+</div>
+<div>
+  <%= f.label :year, '年度', class: 'required' %>
+  <%= f.text_field :year, size: 32, required: true %>
+</div>
+<div>
+  <%= f.label :year_name, '年度名称', class: 'required' %>
+  <%= f.text_field :year_name, size: 32, required: true %>
+  (100文字以内有効)
+</div>
+<div>
+  <%= f.label :start_date, '開始年月日(例 2000-01-01)', class: 'required' %>
+  <%= f.text_field :start_date, size: 32, required: true %>
+</div>
+<div>
+  <%= f.label :end_date, '終了年月日(例 2000-01-01)', class: 'required' %>
+  <%= f.text_field :end_date, size: 32, required: true %>
+</div>
+<div>
+  <%= f.label :remarks, '備考', class: 'required' %>
+  <%= f.text_field :remarks, size: 32, class: 'required' %>
+  (256文字以内有効)
+</div>

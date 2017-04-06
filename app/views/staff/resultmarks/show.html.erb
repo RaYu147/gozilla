@@ -1,0 +1,66 @@
+<% @title = '採点結果' %>
+<h1><%= @title %></h1>
+
+  <!-- 年度表示 -->
+  <%= @year_managements.year_name %>
+
+  <!-- 点数 -->
+  <p>点数　<%= @my_score %>/　<%= @perfect_score.question_count %></p>
+
+
+  <!-- テーブル設問情報+選択肢情報 -->
+  <div class="seclettable-wrapper">
+    <!-- 設問数分だけ -->
+    <% @all_question.each do |count| %>
+      <!-- 設問番号表示 -->
+            <%= count.question_number %>
+            <%= count.question_info.question_contents %>
+
+    <table class="listing">
+      <% @choices = QuestionChoiceInfo.where( :question_info_id => count.question_info.id).select("*") %>
+
+      <% '------' %>
+        <% p @answer_test %>
+        <% '------' %>
+
+      <% @choices.each_with_index do |n| %>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+        <tr>
+          <td>
+            <!-- 回答情報にこの選択肢があれば(回答選択肢id)ラジオボタンを選択し、correctstatusを判定 -->
+            <% @answer_test.each do |m| %>
+              <% if n.id == m.question_choice_info_id %>
+                    <%= "●" %>
+              <% else %>
+
+              <% end %>
+            <% end %>
+          </td>
+          <td><%= n.choice_number %></td>
+          <td><%= n.choice_contents%></td>
+
+          <% @answer_test.each_with_index do |m| %>
+            <% if n.id == m.question_choice_info_id && n.question_info_id == m.question_info_id %>
+              <td>
+                <% if n.correct_status == 1 %>
+                  正解
+                <% else %>
+                  不正解
+                <% end %>
+              </td>
+            <% end %>
+          <% end %>
+        </tr>
+
+          <% end %>
+        </table>
+    <% end %>
+  </div>
+
+
+<%= button_to "受講一覧に戻る" ,:staff_checkmytest_index , :method => :get %>

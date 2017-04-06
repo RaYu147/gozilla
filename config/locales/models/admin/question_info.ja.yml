@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    attributes:
+      question_info:
+        question_contents: 設問内容
+    errors:
+      models:
+        question_info:
+          attributes:
+            question_contents:
